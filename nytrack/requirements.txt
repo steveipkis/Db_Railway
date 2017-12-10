@@ -1,0 +1,2 @@
+pip install django==1.10.6
+pip install MySQL-python==1.2.5
