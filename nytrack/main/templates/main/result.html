@@ -1,0 +1,40 @@
+{% extends 'homepage/base.html' %}
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Train Information</title>
+</head>
+<body>
+
+    <div class="container">
+    {% block content %}
+
+
+        <h3>{{ title }}</h3>
+        <h4>Departing Station: </h4>{{ start_station }}
+        <h4>Departure Date: </h4>{{ depart_date }}
+        <h4>Arriving Station: </h4>{{ end_station }}
+        <h4>Arriving Date: </h4>{{ arrive_date }}
+        <h4>Train Number: </h4>{{ train_number }}<br><br>
+
+        <a href='/purchase/'>Purchase Ticket</a>
+        <br><br>
+        <a href='/search/'>Search for another train</a>
+        <br><br>
+        <a href='/'>Cancel Selection</a>
+
+        <!--<input type="button" value="Book Ticket Now!" href="/purchase/"/><br><br>-->
+        <!--<input type="submit" value="Cancel Selection"/>-->
+
+
+
+    {% endblock content %}
+    </div>
+
+
+</body>
+</html>
+
