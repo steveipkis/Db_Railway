@@ -6,7 +6,7 @@ from django.core.validators import MaxValueValidator
 
 class Station(models.Model):
     station_name = models.CharField(unique=True, max_length=50, verbose_name='Station Name', null=False)
-    station_symbol = models.CharField(unique=True, max_length=5, verbose_name='Station Symbol')
+    station_symbol = models.CharField(unique=True, max_length=10, verbose_name='Station Symbol')
 
     def __unicode__(self):
         return unicode(self.station_name)
