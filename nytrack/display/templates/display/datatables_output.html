@@ -1,0 +1,51 @@
+<{% extends 'home/base.html' %}
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Data Tables Output</title>
+</head>
+<body>
+
+    <div class="container">
+    {% block content %}
+
+        <h3>Train Schedule</h3>
+
+        {% for obj in output %}
+
+        <p><b>Departing Station:</b> {{ obj.sa_station }} <b>Train Number:</b> {{ obj.sa_train }}
+            <b>Time in:</b> {{ obj.sa_time_in }} <b>Time out:</b> {{ obj.sa_time_out }}</p><br><br>
+
+        {% endfor %}
+
+
+        <div class="pagination">
+
+            <span class="step-links">
+                {% if output.has_previous %}
+                <a href="?page={{ output.previous_page_number }}">previous</a>
+                {% endif %}
+
+                <span class="current">
+                Page {{ output.number }} of {{ output.paginator.num_pages }}.
+                </span>
+
+                {% if output.has_next %}
+                <a href="?page={{ output.next_page_number }}"> Next Page </a>
+                {% endif %}
+
+            </span>
+
+        </div>
+
+
+
+    {% endblock content %}
+    </div>
+
+
+</body>
+</html>
