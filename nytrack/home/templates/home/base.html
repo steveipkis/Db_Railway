@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>NYTRACK Platform</title>
+</head>
+
+
+<body class="body" style="background-color: white">
+<!-- Latest compiled and minified CSS -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+
+<!-- Optional theme -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
+
+	<div class="container-fluid" style="min-height:95%; ">
+		<div class="row">
+			  <div class="col-sm-10">
+				  <br>
+				  <center>
+                  {% load staticfiles %}
+                  <link rel="stylesheet" href='{% static "css/base.css" %}' />
+				  <h1>NYTRACK Express</h1>
+                  <h3>CSC 336 Section G </h3><br>
+                  <h3>Final Project Group 4</h3><br>
+				  </center>
+
+			  </div>
+		</div><hr>
+
+		<div class="row">
+		  <div class="col-sm-2">
+		  <br>
+
+		  <br>
+		   <!-- Great, til you resize. -->
+			<!--<div class="well bs-sidebar affix" id="sidebar" style="background-color:#fff">-->
+			<div class="well bs-sidebar" id="sidebar" style="background-color:#a8c9ff">
+			  <ul class="nav nav-pills nav-stacked">
+				<li><a href='/'>Home</a></li>
+				<li><a href='/search/'>Search</a></li>
+				<li><a href='/buy/'>Buy</a></li>
+				<li><a href='/display/'>Display Train Schedule</a></li>
+			  </ul>
+			</div> <!--well bs-sidebar affix-->
+		  </div> <!--col-sm-2-->
+		  <div class="col-sm-10">
+
+			<div class='container-fluid'>
+			<br><br>
+			   {% block content %}
+			   {% endblock %}
+			</div>
+		  </div>
+		</div>
+	</div>
+
+<!-- Latest compiled and minified JavaScript -->
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+</body>
+</html>
