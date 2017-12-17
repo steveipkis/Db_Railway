@@ -21,10 +21,11 @@ from django.conf.urls.static import static
 
 urlpatterns = [
     url(r'^', include('home.urls')),
-    url(r'^search/', include('main.urls')),
+    # url(r'^search/', include('main.urls')),
     url(r'^buy/', include('buy.urls')),
     url(r'^admin/', admin.site.urls),
     url(r'^display/', include('display.urls')),
+    url(r'^ticket', include('ticket.urls'))
     ]
 
 if settings.DEBUG:

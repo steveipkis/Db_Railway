@@ -1,3 +1,48 @@
-h1{
-    color: darkred;
+body{
+  font-family: Montserrat;
+}
+
+.top-header{
+  background-color: black;
+  color: white;
+  height: 200px;
+  margin-top: -20px;
+  padding-top: 40px;
+  margin-bottom: 25px;
+}
+
+.bs-sidebar{
+  background-color: black;
+  border-radius: 10px
+}
+
+.bs-sidebar a{
+  color: white;
+}
+
+.content{
+  border-left: 1px solid black;
+  margin-bottom: 100px;
+}
+
+.subtitle{
+  background-color: #515052;
+  text-align: center;
+  color: white;
+}
+
+
+.success-ticket{
+  margin-bottom: 25px;
+}
+
+.train-logo{
+  height: 160px;
+  position: absolute;
+  left: 60px;
+  top: 15px;
+}
+
+img{
+  height: inherit;
 }

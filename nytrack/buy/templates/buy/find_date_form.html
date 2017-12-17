@@ -1,0 +1,27 @@
+{% extends 'home/base.html' %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Buy Tickets</title>
+</head>
+
+<body>
+  <div class="container">
+  {% block content %}
+    <div class="col-sm-12">
+      <h2 class="subtitle">Complete your purchase | Find Date</h2>
+      <form method="POST" action = "">{% csrf_token %}
+          <p>Depart From</p> {{ form.trip_start_station }}
+          <br><br>
+          <p>Arrive To</p> {{ form.trip_end_station }}
+          <br><br>
+          <input type="submit" value="Find Date!"/>
+      </form>
+    {% endblock content %}
+    </div>
+  </div>
+
+</body>
+</html>

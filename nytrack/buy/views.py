@@ -1,56 +1,100 @@
 from django.shortcuts import render
 from datetime import date, datetime, time, timedelta
-from main.forms import TicketTripForm
+from main.forms import TicketTripForm, FindDateForm
 from main.models import *
 
-def buy(request):
+
+def findDate(request):
     context = {}
-    form = TicketTripForm(request.POST or None)
+    form = FindDateForm(request.POST or None)
     if request.method == 'POST':  # This statement is executed when the user clicks on 'buy ticket' button
         print request.POST
-
         if request.POST['trip_start_station'] == request.POST['trip_end_station']:
             context['title'] = "Please choose a different starting or ending station, Thank you"
             return render(request, 'main/error.html', context)
 
-        elif form.is_valid():
-            calculate_trip_info = calculateRemainingParts(request.POST)
-            update_info = updateSeatsFree(request.POST)
+        if form.is_valid():
+            ChoiceStartStation = Station.objects.get(id=request.POST['trip_start_station'])  # Specific start station object
+            ChoiceEndStation = Station.objects.get(id=request.POST['trip_end_station'])  # Specific end station object
 
-            if len(update_info) > 1:
-                instanceTripTicket = form.save(commit=False)
-                instanceTripTicket.trip_segment_start = calculate_trip_info['TripSegmentStart']
-                instanceTripTicket.trip_segment_end = calculate_trip_info['TripSegmentEnd']
-                instanceTripTicket.trip_fare = calculate_trip_info['TripFare']
-                instanceTripTicket.trip_train = update_info['train_number']
-
-                # Updating context to be displayed to user
-                context = {
-                    'title': "Thank you for choosing us. Save your ticket information",
-                    'start': str(calculate_trip_info['StartStation']),
-                    'depart_time': str(request.POST['trip_date']),
-                    'end': str(calculate_trip_info['EndStation']),
-                    'arrive_time': str(update_info['arrive_date']),
-                    'train': str(update_info['train_number']),
-                    'fare': str(instanceTripTicket.trip_fare),
-                    #'ticket_number':  ,
-                }
-
-                # saving to database
-                instanceTripTicket.save()
-                # render to front-end
-                return render(request, 'buy/success.html', context)
-
+            if ChoiceStartStation.id < ChoiceEndStation.id:  # Trip Heading North
+                result = StopsAt.objects.filter(sa_station=ChoiceStartStation).filter(sa_train__train_direction=1)
             else:
-                return render(request, 'main/error.html', update_info)
+                result = StopsAt.objects.filter(sa_station=ChoiceStartStation).filter(sa_train__train_direction=0)
 
+            dates = []
+            for item in result:
+                dates.append(str(item.sa_time_in))
+
+            form = TicketTripForm
+            context = {
+                'start': str(ChoiceStartStation),
+                'end': str(ChoiceEndStation),
+                'dates': dates,
+                'form': form
+            }
+
+            #return [request, 'buy/purchase_ticket.html', context ]
+            print "IN FINDDATE POST \n"
+            
+            return render(request, 'ticket/ticket.html', context)
     else:
-        # Adding some context to search.html. It allows us to use some sort of object and bring that into our template
         context = {
             'form': form,
         }
 
-        return render(request, 'buy/purchase_ticket.html', context)
+    return render(request, 'buy/find_date_form.html', context)
+
+
+
+# def buy(request):
+#     context = {}
+#     form = TicketTripForm(request.POST or None)
+#     if request.method == 'POST':  # This statement is executed when the user clicks on 'buy ticket' button
+#         print "IN BUY METHOD"
+#         print request.POST
+#         #return render(request, 'buy/success.html', {})
+
+#         if request.POST['trip_start_station'] == request.POST['trip_end_station']:
+#             context['title'] = "Please choose a different starting or ending station, Thank you"
+#             return render(request, 'main/error.html', context)
+
+#         if form.is_valid():
+#             calculate_trip_info = calculateRemainingParts(request.POST)
+#             update_info = updateSeatsFree(request.POST)
+
+#             if len(update_info) > 1:
+#                 instanceTripTicket = form.save(commit=False)
+#                 instanceTripTicket.trip_segment_start = calculate_trip_info['TripSegmentStart']
+#                 instanceTripTicket.trip_segment_end = calculate_trip_info['TripSegmentEnd']
+#                 instanceTripTicket.trip_fare = calculate_trip_info['TripFare']
+#                 instanceTripTicket.trip_train = update_info['train_number']
+
+#                 # Updating context to be displayed to user
+#                 context = {
+#                     'title': "Thank you for choosing us. Save your ticket information",
+#                     'start': str(calculate_trip_info['StartStation']),
+#                     'depart_time': str(request.POST['trip_date']),
+#                     'end': str(calculate_trip_info['EndStation']),
+#                     'arrive_time': str(update_info['arrive_date']),
+#                     'train': str(update_info['train_number']),
+#                     'fare': str(instanceTripTicket.trip_fare),
+#                     #'ticket_number':  ,
+#                 }
+
+#                 instanceTripTicket.save()
+                                
+#                 return render(request, 'buy/success.html', context)
+#             else:
+#                 return render(request, 'main/error.html', update_info)
+
+#     else:
+#         context = {
+#             'form': form,
+#             'dates': dates
+#         }
+
+#         return render(request, 'buy/purchase_ticket.html', context)
 
 
 def calculateRemainingParts(request_POST):

@@ -1,0 +1,48 @@
+{% extends 'home/base.html' %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Buy Tickets</title>
+</head>
+<body>
+  <div class="container">
+  {% block content %}
+
+    <div class="col-sm-6">
+      <h2 class="subtitle">Buy your Ticket</h2>
+      
+      <form method="POST" action="/ticket">{% csrf_token %}
+          <h4>Depart From | <strong class="text-primary">{{start}}</strong> </h4> 
+          <div>{{ form.trip_start_station }}</div>
+
+          <h4>Arrive To | <strong class="text-primary">{{end}}</strong></h4>
+          <div>{{ form.trip_end_station }}</div>
+          
+          <h4>Trip Date</h4> 
+          <div>{{ form.trip_date }}</div>
+          <div>Example date: 2018-01-01 {{dates.0}}</div>
+          
+          <h4>Payment Method</h4> 
+          <div>{{ form.trip_pay_method }}</div>
+          
+          <input type="submit" value="Purchase Ticket!"/>
+      </form>
+
+    </div>
+
+    <div class="col-sm-6">
+      <h2 class="subtitle">Available Times</h2>
+      <h4>These are all the departure times for {{start}} station</h4>
+      {% for date in dates %}
+        <h4 class="text-success">{{date}}</h4>
+      {% endfor %}
+    </div>
+
+    {% endblock content %}
+    </div>
+  </div>
+
+</body>
+</html>

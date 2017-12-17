@@ -9,7 +9,6 @@ class SearchTrainForm(forms.Form):
                                widget=forms.DateTimeInput(format='%Y-%m-%d %H:%M:%S'))
 
 class TicketTripForm(forms.ModelForm):
-
     class Meta:
         model = TicketTrip
         fields = ('trip_start_station', 'trip_end_station', 'trip_pay_method', 'trip_date')
@@ -31,3 +30,8 @@ class PassengerForm(forms.ModelForm):
             raise forms.ValidationError('Please enter a college email: "example@college.edu" ')
 
         return email
+
+class FindDateForm(forms.ModelForm):
+    class Meta:
+        model = TicketTrip
+        fields = ('trip_start_station', 'trip_end_station')

@@ -15,34 +15,25 @@
 </head>
 
 <body>
+  <div class="container">
+    {% block content %}
+    {% load staticfiles %}
+    <div class="col-sm-12">
+      <h2 class="subtitle">Search for available trains</h2>
+      <form method="POST" action = "">{% csrf_token %}
+        <p>From</p> {{ form1.start }}
+        <br><br>
+        <p>To</p> {{ form1.end }}
+        <br><br>
+        <p>Date</p> {{ form1.date }} <p>Example date: 2017-06-01 06:00:00</p>
+        <br><br>
+        <br><br><br><br>
+        <input type="submit" value="Search Train"/>
+      </form>
+    </div>
 
-
-
-<div class="container">
-{% block content %}
-
-{% load staticfiles %}
-
-
-        <form method="POST" action = "">{% csrf_token %}
-
-            <p>From</p> {{ form1.start }}
-            <br><br>
-            <p>To</p> {{ form1.end }}
-            <br><br>
-            <p>Date</p> {{ form1.date }} <p>Example date: 2017-06-01 06:00:00</p>
-            <br><br>
-            <br><br><br><br>
-
-            <input type="submit" value="Search Train"/>
-
-        </form>
-
-
-{% endblock content %}
-</div>
-
-
+  {% endblock content %}
+  </div>
 
 </body>
 </html>
