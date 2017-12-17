@@ -13,4 +13,6 @@ management/
 venv/
 ENV/
 
+# Static Content
+static_cdn
 .DS_Store
