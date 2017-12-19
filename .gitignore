@@ -16,3 +16,6 @@ ENV/
 # Static Content
 static_cdn
 .DS_Store
+
+# sensitive data
+password.txt
