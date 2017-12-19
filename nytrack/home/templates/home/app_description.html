@@ -10,14 +10,20 @@
 <body>
   <div class="container">
   {% block content %}
-      
+
       <div class="col-sm-12">
         <h2 class="subtitle">Project Description</h2>
           <ul>
-            <li>The purpose of this web application is to recreate the Amtrak ticket booking system</li>
-            <li>All ticket bookings <b>start</b>: 2017-06-01 6:00:00</li>
-            <li>This platform serves trains for <b>only</b> the month on June</li>
-            <li>First Trains</li>
+            <p>This Project intends to demonstrate our abilities to communicate,
+              query and integrate a database by mimicking the Amtrak railway service.
+              The source code as well as the documentation for this project can be found
+              <a href="https://github.com/steveipkis/Db_Railway">here</a>. The following
+              are some small details to consider:
+            </p>
+            <p></p>
+            <li>All ticket bookings are only for the month of January 2018.</li>
+            <li>All dates are in the <b>format</b>: 2018-08-01 6:00:00</li>
+            <!-- <li>First Trains</li>
             <ul>
               <li>Train "1North", "Union Station | Washington, DC" departs 2017-06-01 6:00:00</li>
               <li>Train "1South", "South Station | Boston, MA" departs 2017-06-01 6:00:00</li>
@@ -27,35 +33,32 @@
               <li>Train "8North", "Union Station | Washington, DC" departs 2017-06-30 21:00:00</li>
               <li>Train "8South", "South Station | Boston, MA" departs 2017-06-30 21:00:00</li>
             </ul>
-        </ul>
+        </ul> -->
       </div>
-      
+
       <div class="col-sm-12">
         <h2 class="subtitle">Instructions</h2>
           <ul>
-            <li>Search Available Train: Looks through our database and find if an available train exists with the given inputs</li>
-              <ul>
-                  <li>Upon clicking the search button, user is prompted with:</li>
-                  <ul>
-                      <li>Return Home</li>
-                      <li>Make Another Search</li>
-                      <li>Purchase Selected Search</li>
-                  </ul>
-              </ul>
-          </ul>
-      </div>
+            <p>To Check for the Train Time Tables or Tickets purchased simply navigate to
+              <b>Display Train Schedule</b>.
+            <!-- </p> -->
+            <!-- <p> -->
+              In order to purchase a ticket simply navigate to
+              <b>Buy Or Search</b>
+            </p>
 
       <div class="col-sm-12">
         <h2 class="subtitle">Purchase Ticket</h2>
           <ul>
-            <li>Upon clicking Purchase button, user is prompted with:</li>
+            <p>Upon clicking Purchase button, user is prompted with:</p>
             <ul>
-              <li>Ticket information</li>
-              <li>Train</li>
               <li>Departure Station</li>
-              <li>Departure Time </li>
-              <li>Arriving Station</li>
-              <li>Arriving Time </li>
+              <li>Destination Station</li></ul>
+              <p></p>
+            <p>Once the user has selected the stations, a list of available times is generated for the user
+            to select. Once again the user must choose the stations and is prompted to choose: </p>
+            <ul> <li>Departure Date</li>
+              <li>Method of Payment</li>
               <li>NOTE: Trip information is saved on database</li>
             </ul>
           </ul>
@@ -67,13 +70,3 @@
 </body>
 
 </html>
-
-
-
-
-
-
-
-
-
-
