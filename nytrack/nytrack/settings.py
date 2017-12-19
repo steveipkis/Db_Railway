@@ -53,12 +53,6 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'nytrack.wsgi.application'
 
-try:
-    import MySQLdb  # noqa: F401
-except ImportError:
-    import pymysql
-    pymysql.install_as_MySQLdb()
-
 
 if os.getenv('SERVER_SOFTWARE', '').startswith('Google App Engine'):
     DATABASES = {
@@ -71,13 +65,24 @@ if os.getenv('SERVER_SOFTWARE', '').startswith('Google App Engine'):
         }
     }
 else:
-    print "Not in Google"
     DATABASES = {
         'default': {
-            'ENGINE': 'django.db.backends.sqlite3',
-            'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+            'ENGINE': 'django.db.backends.mysql',
+            'HOST': '127.0.0.1',
+            'PORT': '3306',
+            'NAME': 'polls',
+            'USER': 'haris',
+            'PASSWORD': 'hoboken',
         }
     }
+
+
+    # print "Not in Google"
+    # DATABASES = {
+    #     'default': {
+    #         'ENGINE': 'django.db.backends.sqlite3',
+    #         'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+    #
 #
 # DATABASES = {
 #     'default' : {
@@ -115,7 +120,7 @@ USE_L10N = True
 
 USE_TZ = True
 
-
+ATOMIC_REQUESTS = True
 
 STATIC_URL = '/static/'
 
