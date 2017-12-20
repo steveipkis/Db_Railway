@@ -2,6 +2,7 @@ import os
 
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
+# SECURITY WARNING: don't run with secret key revealed
 SECRET_KEY = '_puui^dq2$x4z#f2##pus1&btn4vp0r5e+2g@k_e#*&p4an2ff'
 
 # SECURITY WARNING: don't run with debug turned on in production!
@@ -58,7 +59,7 @@ if os.getenv('SERVER_SOFTWARE', '').startswith('Google App Engine'):
     DATABASES = {
         'default': {
             'ENGINE': 'django.db.backends.mysql',
-            'HOST': 'nytrack-express:us-central1:polls',
+            'HOST': '/cloudsql/nytrack-express:us-central1:polls',
             'NAME': 'polls',
             'USER': 'haris',
             'PASSWORD': 'hoboken',
@@ -76,24 +77,23 @@ else:
         }
     }
 
+#For SQL lite: Use this as your db
 
-    # print "Not in Google"
     # DATABASES = {
     #     'default': {
     #         'ENGINE': 'django.db.backends.sqlite3',
     #         'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
     #
-#
-# DATABASES = {
-#     'default' : {
-#         'ENGINE' : 'django.db.backends.mysql',
-#         'HOST': 'localhost',
-#         'PORT' : '',
-#         'NAME' : 'NYTRACK',
-#         'USER' : 'root',
-#         'PASSWORD' : 'googoodolls'
-#     }
-# }
+
+#For Locally hosted MySQL db: Use this as your db
+    # DATABASES = {
+    #     'default' : {
+    #         'ENGINE' : 'django.db.backends.mysql',
+    #         'HOST': 'localhost',
+    #         'PORT' : '',
+    #         'NAME' : 'Database_name',
+    #         'USER' : 'root',
+    #         'PASSWORD' : 'password'
 
 AUTH_PASSWORD_VALIDATORS = [
     {
